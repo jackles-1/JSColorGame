@@ -1,0 +1,35 @@
+body{
+	background-color: #232323;
+}
+
+.square{
+	/*this is 30% of the div #container*/
+	width: 30%;
+
+	background: purple;	
+	
+	/*needed so that there is something there inside the square divs*/
+	padding-bottom: 30%;
+
+	/*The float CSS property specifies that an element should be taken from 
+	the normal flow and placed along the left or right side of its container, 
+	where text and inline elements will wrap around it.*/
+	/*SO, this makes the squares be a grid, rather than in a column on the left*/
+	float: left;
+
+	/*adds up with the 30% widths to fill 100% of #container*/
+	margin: 1.66%;
+}
+
+#container{
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+h1{
+	color: white;
+}
+
+#message{
+	color: white;
+}

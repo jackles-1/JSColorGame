@@ -1,5 +1,7 @@
+var numOfSquares = 6;
+
 // generate random colors for squares
-var colors = generateRandomColors(6);
+var colors = generateRandomColors(numOfSquares);
 
 // select winning color and display rgb values
 var winningDisplay = document.querySelector("#winner");
@@ -26,6 +28,8 @@ for(var i = 0; i < squares.length; i++){
 
 			changeColors(colors[winningColor]);
 
+			resetButton.textContent = "Play Again?"
+
 		}
 		else{
 			this.style.backgroundColor = "#232323";
@@ -33,6 +37,86 @@ for(var i = 0; i < squares.length; i++){
 		}
 	});
 }
+
+// sets up reset button to reset game and change text
+var resetButton = document.querySelector("#reset");
+
+resetButton.addEventListener("click", function(){
+	// generate new random colors
+	colors = generateRandomColors(numOfSquares);
+
+	// pick a new winning color and display its RGB
+	winningColor = pickWinningColor();
+	winningDisplay.textContent = colors[winningColor].substr(3);
+
+	// change backgrounds of squares to match new colors
+	for(var i = 0; i < squares.length; i++){
+		squares[i].style.backgroundColor = colors[i];
+	}
+
+	// reset h1 background to black
+	h1Display.style.backgroundColor = "#232323";
+
+	// change resetButton's text back to "Change Colors"
+	resetButton.textContent = "Change Colors";
+});	
+
+// set up easy and hard buttons.........
+var easyBtn = document.querySelector("#easy");
+var hardBtn = document.querySelector("#hard");
+easyBtn.addEventListener("click", function(){
+	easyBtn.classList.add("selected");
+	hardBtn.classList.remove("selected");
+	numOfSquares = 3;
+
+	// generate new random colors
+	colors = generateRandomColors(numOfSquares);
+
+	// pick a new winning color and display its RGB
+	winningColor = pickWinningColor();
+	winningDisplay.textContent = colors[winningColor].substr(3);
+
+	// change backgrounds of squares to match new colors
+	for(var i = 0; i < squares.length; i++){
+		if (colors[i]){
+			squares[i].style.backgroundColor = colors[i];
+		}
+		else{
+			// **************************************************
+			squares[i].style.display = "none";
+		}
+	}
+
+	// reset h1 background to black
+	h1Display.style.backgroundColor = "#232323";
+
+	// change resetButton's text back to "Change Colors"
+	resetButton.textContent = "Change Colors";
+});
+hardBtn.addEventListener("click", function(){
+	easyBtn.classList.remove("selected");
+	hardBtn.classList.add("selected");
+	numOfSquares = 6;
+
+	// generate new random colors
+	colors = generateRandomColors(numOfSquares);
+
+	// pick a new winning color and display its RGB
+	winningColor = pickWinningColor();
+	winningDisplay.textContent = colors[winningColor].substr(3);
+
+	// change backgrounds of squares to match new colors
+	for(var i = 0; i < squares.length; i++){
+		squares[i].style.backgroundColor = colors[i];
+		squares[i].style.display = "block";
+	}
+
+	// reset h1 background to black
+	h1Display.style.backgroundColor = "#232323";
+
+	// change resetButton's text back to "Change Colors"
+	resetButton.textContent = "Change Colors";
+});
 
 // changes background color of all squares and the h1 to match color passed in
 function changeColors(color){
@@ -66,5 +150,6 @@ function generateRandomColors(numOfColors){
 
 	return colors;
 }
+
 
 

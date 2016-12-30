@@ -96,7 +96,7 @@ function reset(){
 	colors = generateRandomColors(numOfSquares);
 	// pick a new winning color and display its RGB
 	winningColor = pickWinningColor();
-	winningDisplay.textContent = colors[winningColor].substr(3);
+	winningDisplay.textContent = "RGB" + colors[winningColor].substr(3);
 	// change backgrounds of squares to match new colors
 	for(var i = 0; i < squares.length; i++){
 		if(colors[i]){
